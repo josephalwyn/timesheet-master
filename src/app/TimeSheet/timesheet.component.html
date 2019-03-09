@@ -1,0 +1,44 @@
+<div class="dddiv">
+    <label class="emdropdown">  <b>Select Employee</b></label>
+        
+    </div><div class="dddiv"> 
+<select (change)="ddChange($event.target.value)" class="emdropdown"  >
+    <option value="0">Select</option>
+    <option *ngFor="let em of employees" value= {{em.id}}>
+      {{em.name}}
+    </option>
+  </select></div><br>
+  <div *ngIf="selemployee">
+      <button class="btn" (click)="AddTask()" >Add Task</button>
+  </div>
+<div class="wk">Week</div>
+<table class="table">
+    <tr>
+        <th>Task ID</th>
+        <th>Sunday</th>
+        <th>Monday</th>
+        <th>Tuesday</th>
+        <th>Wednesday</th>
+        <th>Thursday</th>
+        <th>Friday</th>
+        <th>Saturday</th>
+    </tr>
+    <tr *ngFor="let item of timesheettask">
+        <td><div *ngIf="item.show"><select [(ngModel)]="item.TaskId">                
+                <option *ngFor="let em of timesheetlist" value= {{em.id}}>
+                  {{em.name}}
+                </option>
+              </select></div><div>{{item.taskname}}</div></td>
+        <td><div *ngIf="item.show"><input type="number"  [(ngModel)]="item.sunday"/></div><div  *ngIf="!item.show">{{item.sunday}}</div></td>
+        <td><div *ngIf="item.show"><input type="number"  [(ngModel)]="item.monday"/></div><div *ngIf="!item.show">{{item.monday}}</div></td>
+        <td><div *ngIf="item.show"><input type="number"  [(ngModel)]="item.tuesday"/></div><div *ngIf="!item.show">{{item.tuesday}}</div></td>
+        <td><div *ngIf="item.show"><input type="number"  [(ngModel)]="item.wednesday"/></div><div *ngIf="!item.show">{{item.wednesday}}</div></td>
+        <td><div *ngIf="item.show"><input type="number"  [(ngModel)]="item.thursday"/></div><div *ngIf="!item.show">{{item.thursday}}</div></td>
+        <td><div *ngIf="item.show"><input type="number"  [(ngModel)]="item.friday"/></div><div *ngIf="!item.show">{{item.friday}}</div></td>
+        <td><div *ngIf="item.show"><input type="number"  [(ngModel)]="item.saturday"/></div><div *ngIf="!item.show">{{item.saturday}}</div></td>
+    </tr>
+</table>
+
+<button class="btn" (click)="navemployee()"> Back to List</button>
+<div *ngIf="selemployee">
+<button class="btn"(click)="SaveTimesheet()" > Save</button></div>
